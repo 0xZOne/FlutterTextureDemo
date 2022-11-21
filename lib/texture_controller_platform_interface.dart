@@ -23,7 +23,10 @@ abstract class TextureControllerPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String?> getPlatformVersion() {
+  Future<int> create(double width, double height) async {
     throw UnimplementedError('platformVersion() has not been implemented.');
   }
+
+  Future<void> dispose(int? textureId) =>
+      throw UnimplementedError('platformVersion() has not been implemented.');
 }

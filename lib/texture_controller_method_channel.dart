@@ -10,8 +10,14 @@ class MethodChannelTextureController extends TextureControllerPlatform {
   final methodChannel = const MethodChannel('texture_controller');
 
   @override
-  Future<String?> getPlatformVersion() async {
-    final version = await methodChannel.invokeMethod<String>('getPlatformVersion');
-    return version;
+  Future<int> create(double width, double height) async {
+    return await methodChannel.invokeMethod('create', {
+      'width': width,
+      'height': height,
+    });
   }
+
+  @override
+  Future<void> dispose(int? textureId) =>
+      methodChannel.invokeMethod('dispose', {'textureId': textureId});
 }

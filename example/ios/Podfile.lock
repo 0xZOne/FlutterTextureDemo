@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - texture_controller (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - texture_controller (from `.symlinks/plugins/texture_controller/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  texture_controller:
+    :path: ".symlinks/plugins/texture_controller/ios"
+
+SPEC CHECKSUMS:
+  Flutter: f04841e97a9d0b0a8025694d0796dd46242b2854
+  texture_controller: b1e2b4669202f13abaa421147bec90c828878cbe
+
+PODFILE CHECKSUM: 663715e941f9adb426e33bf9376914006f9ea95b
+
+COCOAPODS: 1.11.3
