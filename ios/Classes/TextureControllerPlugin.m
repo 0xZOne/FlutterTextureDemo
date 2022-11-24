@@ -1,10 +1,9 @@
 #import "TextureControllerPlugin.h"
 
-#import "OpenGLRender.h"
-#import "SampleRenderWorker.h"
+#import "AAPLRenderer.h"
 
 @interface TextureControllerPlugin()
-@property (nonatomic, strong) NSMutableDictionary<NSNumber *, OpenGLRender *> *renders;
+@property (nonatomic, strong) NSMutableDictionary<NSNumber *, /*OpenGLRender*/AAPLRenderer *> *renders;
 @property (nonatomic, strong) NSObject<FlutterTextureRegistry> *textures;
 @end
 
@@ -34,19 +33,17 @@
 
       NSInteger __block textureId;
       id<FlutterTextureRegistry> __weak registry = self.textures;
-
-      OpenGLRender *render = [[OpenGLRender alloc] initWithSize:CGSizeMake(width, height)
-                                                          worker:[[SampleRenderWorker alloc] init]
-                                                      onNewFrame:^{
-                                                          [registry textureFrameAvailable:textureId];
-                                                      }];
+      AAPLRenderer* render = [[AAPLRenderer alloc] initWithSize:CGSizeMake(width, height)
+                                                     onNewFrame:^{
+                                                        [registry textureFrameAvailable:textureId];
+                                                     }];
 
       textureId = [self.textures registerTexture:render];
       self.renders[@(textureId)] = render;
       result(@(textureId));
   } else if ([@"dispose" isEqualToString:call.method]) {
       NSNumber *textureId = call.arguments[@"textureId"];
-      OpenGLRender *render = self.renders[textureId];
+      AAPLRenderer *render = self.renders[textureId];
       [render dispose];
       [self.renders removeObjectForKey:textureId];
       result(nil);

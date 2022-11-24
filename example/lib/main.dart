@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('OpenGL via Texture widget example'),
+          title: const Text('Metal via Texture widget example'),
         ),
         // body: Center(
         //   child: TextureWidget(width: _width, height: _height),
